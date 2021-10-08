@@ -1,0 +1,38 @@
+
+<div class="col-md-6 offset-md-3">
+    <br>
+    <h3>Alterar Pessoa</h3>
+    <br>
+    <form (ngSubmit) = "onSubmit()">
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" id="nome" 
+                [(ngModel)] = "pessoa.nome" name = "nome">
+        </div>
+
+        <div class="form-group">
+            <label>Cpf</label>
+            <input type="text" class="form-control" id="cpf" 
+                [(ngModel)] = "pessoa.cpf" name = "cpf">
+        </div>
+
+        <div class="form-group">
+            <label>vacinou</label>
+            <input type="checkbox"  id="vacinou" 
+                [(ngModel)] = "pessoa.vacinou" name = "vacinou">
+        </div>
+
+        <div class="form-group">
+            <label>Primeira Dose</label>
+            <input type="date" class="form-control" id="primeiraDose" 
+                [(ngModel)] = "pessoa.primeiraDose" name = "primeiraDose">
+        </div>
+
+        <div class="form-group">
+            <label>Segunda Dose</label>
+            <input type="date" class="form-control" id="segundaDose" 
+                [(ngModel)] = "pessoa.segundaDose" name = "segundaDose">
+        </div> 
+        <button class="btn btn-sucess" type="submit">Salvar</button>
+    </form>
+</div>

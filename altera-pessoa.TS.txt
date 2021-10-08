@@ -1,0 +1,39 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ListaPessoaService } from '../lista-pessoa.service';
+import { Pessoa } from '../pessoa';
+
+@Component({
+  selector: 'app-altera-pessoa',
+  templateUrl: './altera-pessoa.component.html',
+  styleUrls: ['./altera-pessoa.component.css']
+})
+export class AlteraPessoaComponent implements OnInit {
+
+  pessoa: Pessoa = new Pessoa();
+  id!: number;
+
+  constructor(private listaPessoaService: ListaPessoaService,
+      private router:Router,
+      private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.listaPessoaService.consultarPessoa(this.id).subscribe(data => {
+      this.pessoa = data;
+    },
+    error => console.log(error)
+    );
+  }
+
+  onSubmit(){
+    this.listaPessoaService.alterarPessoa(this.id, this.pessoa).subscribe(data => {
+      this.listarPessoas();
+    }, error => console.log(error)
+    ); 
+  }
+listarPessoas(){
+  this.router.navigate(['/lista-pessoas']);
+}
+
+}

@@ -1,0 +1,33 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ListaPessoaService } from '../lista-pessoa.service';
+import { Pessoa } from '../pessoa';
+
+@Component({
+  selector: 'app-consulta-pessoa',
+  templateUrl: './consulta-pessoa.component.html',
+  styleUrls: ['./consulta-pessoa.component.css']
+})
+export class ConsultaPessoaComponent implements OnInit {
+
+
+  id!:number;
+  pessoa!: Pessoa;
+
+  constructor(private listaPessoaService: ListaPessoaService, 
+    private route: ActivatedRoute, 
+    private router: Router) { }
+
+  ngOnInit(): void {
+    this.id =this.route.snapshot.params['id'];
+
+    this.pessoa = new Pessoa();
+    this.listaPessoaService.consultarPessoa(this.id).subscribe( data => {
+      this.pessoa = data;
+    });
+  }
+
+  retornarLista(){
+    this.router.navigate(['lista-pessoas']);
+  }
+}

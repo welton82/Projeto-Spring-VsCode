@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ListaPessoaService } from '../lista-pessoa.service';
+import { ListaPessoaComponent } from '../lista-pessoa/lista-pessoa.component';
+import { Pessoa } from '../pessoa';
+
+@Component({
+  selector: 'app-insere-pessoa',
+  templateUrl: './insere-pessoa.component.html',
+  styleUrls: ['./insere-pessoa.component.css']
+})
+export class InserePessoaComponent implements OnInit {
+
+  pessoa:Pessoa = new Pessoa();
+
+
+  constructor(private pessoaService: ListaPessoaService, private router:Router) { }
+
+  ngOnInit(): void {
+  }
+
+
+
+  onSubmit(){
+    //console.log(this.pessoa);
+    this.inserePessoa();
+
+  }
+
+  inserePessoa(){
+    this.pessoaService.inserirPessoa(this.pessoa).subscribe(data => { 
+        console.log(data);
+        this.listarPessoa();
+        },
+        error => console.log(error));
+  }
+
+  listarPessoa(){
+    this.router.navigate(['lista-pessoas']);
+  }
+
+}

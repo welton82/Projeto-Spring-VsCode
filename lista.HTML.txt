@@ -1,0 +1,31 @@
+<h2 class="text-center">Lista de Pessoas</h2>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Cpf</th>
+                <th>Vacinou</th>
+                <th>PrimeiraDose</th>
+                <th>SegundaDose</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let pessoa of pessoas">
+                <td>{{ pessoa.id }}</td>
+                <td>{{ pessoa.nome }}</td>
+                <td>{{ pessoa.cpf }}</td>
+                <td>{{ pessoa.vacinou }}</td>
+                <td>{{ pessoa.primeiraDose }}</td>
+                <td>{{ pessoa.segundaDose }}</td>
+                <td>
+                    <button (click) = "alterarPessoa(pessoa.id)" class="btn btn-info"> Alterar</button>
+                    <button (click) = "excluirPessoa(pessoa.id)" class="btn btn-danger" style="margin-left: 10px"> Excluir</button>
+                    <button (click) = "consultarPessoa(pessoa.id)" class="btn btn-info" style="margin-left: 10px"> Detalhes</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

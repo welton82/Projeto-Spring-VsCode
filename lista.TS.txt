@@ -1,0 +1,43 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ListaPessoaService } from '../lista-pessoa.service';
+import { Pessoa } from '../pessoa';
+
+@Component({
+  selector: 'app-lista-pessoa',
+  templateUrl: './lista-pessoa.component.html',
+  styleUrls: ['./lista-pessoa.component.css']
+})
+export class ListaPessoaComponent implements OnInit {
+
+  pessoas!:Pessoa[];
+
+  constructor(private listaPessoaService: ListaPessoaService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.carregaListaPessoas();
+  }
+
+
+  private carregaListaPessoas(){
+    this.listaPessoaService.listarPessoas().subscribe(data => {
+      this.pessoas = data;
+    });
+  }
+
+
+  alterarPessoa(id: number){
+    this.router.navigate(['altera-pessoa', id]);
+  }
+
+  excluirPessoa(id:number){
+    this.listaPessoaService.excluirPessoa(id).subscribe(data =>{
+      console.log(data);
+      this.carregaListaPessoas();
+    })
+  }
+
+  consultarPessoa(id: number){
+    this.router.navigate(['consulta-pessoa', id]);
+  }
+}

@@ -1,0 +1,27 @@
+
+<div class="container">
+    <h3>Pessoa Cadastrada</h3>
+    <div>
+        <label> <b> Id: </b></label> {{pessoa.id}}
+    </div>
+    <div>
+        <label> <b> Nome: </b></label> {{pessoa.nome}}
+    </div>
+    <div>
+        <label><b> Cpf: </b> </label> {{pessoa.cpf}}
+    </div>
+    <div>
+        <label> <b> Vacinou: </b> </label> {{pessoa.vacinou}}
+    </div>
+    <div>
+        <label> <b> PrimeiraDose</b>> </label> {{pessoa.primeiraDose}}
+    </div>
+    <div>
+        <label> <b> SegundaDose</b>> </label> {{pessoa.segundaDose}}
+    </div>
+    <br>
+    <br>
+    <div>
+        <button (click) = "retornarLista()" class="btn btn-info" style="margin-left: 10px">Voltar</button>
+    </div>
+</div>
